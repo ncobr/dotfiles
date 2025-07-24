@@ -139,9 +139,14 @@ done
 
 
 echo -e "\n${GREEN}=>${RESET} Enlazando dotfiles con stow...\n"
+
+cd "$HOME/dotfiles"
+
 for dir in */; do
-    stow -v --target="$HOME" "$dir"
+  echo -e "${BLUE} ->${RESET} Enlazando $dir"
+  stow -v --target="$HOME" "$dir"
 done
+
 
 echo -e "\n${GREEN}=> SUCCES:${RESET} Dotfiles installed\n"
 

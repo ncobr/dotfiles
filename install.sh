@@ -99,9 +99,40 @@ fi
 
 
 echo -e "\n${GREEN}=>${RESET} Clonning dotfiles repository...\n"
-if [ ! -d "$HOME/dotfiles" ]; then
+if [ -d "$HOME/dotfiles" ]; then
+    echo -e "${YELLOW} ->${RESET} repository already cloned"
+else
+    echo -e "${BLUE} ->${RESET} creating dotfiles dirname...\n"
   git clone https://github.com/ncobr/dotfiles.git "$HOME/dotfiles"
 fi
 cd "$HOME/dotfiles"
 
+echo -e "${GREEN}=>${RESET} Backing up old configurations..."
 
+# Timestamp para backups únicos
+BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$BACKUP_DIR"
+
+# Detectar qué carpetas están en el repositorio (son los paquetes a stowear)
+stow_packages=()
+for dir in */; do
+    stow_packages+=("${dir%/}")
+done
+
+for pkg in "${stow_packages[@]}"; do
+    target_path="$HOME/.config/$pkg"
+
+    # Excepciones comunes que no están en .config
+    case "$pkg" in
+        zsh) target_path="$HOME/.zshrc" ;;
+        xinitrc) target_path="$HOME/.xinitrc" ;;
+        bash) target_path="$HOME/.bashrc" ;; # por si acaso
+        nvim) target_path="$HOME/.config/nvim" ;;
+    esac
+
+    if [ -e "$target_path" ]; then
+        echo -e "${YELLOW} ->${RESET} Backing up $target_path to $BACKUP_DIR"
+        mkdir -p "$BACKUP_DIR/$(dirname "$target_path" | sed "s|$HOME/||")"
+        mv "$target_path" "$BACKUP_DIR/$(dirname "$target_path" | sed "s|$HOME/||")"
+    fi
+done

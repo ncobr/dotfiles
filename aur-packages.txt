@@ -1,0 +1,8 @@
+apple-fonts
+barrier
+betterlockscreen
+git-credential-oauth
+tlpui
+xlap
+yay
+yay-debug

@@ -160,5 +160,7 @@ rsync
 unzip
 zip
 ripgrep
+nodejs
+npm
 
 

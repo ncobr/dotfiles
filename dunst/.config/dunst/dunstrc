@@ -1,0 +1,162 @@
+# ~/.config/dunst/dunstrc
+
+[global]
+    monitor = 0
+    follow = mouse
+
+    # POSICIÓN: abajo centrado
+    origin = bottom-center
+    offset = (0, 80)        # X=centrado, Y=80 píxeles desde abajo
+    width = (0, 450)        # ancho dinámico, máx 450px
+    height = (0, 300)       # alto dinámico, máx 300px
+
+    # Transparencia y estilo
+    transparency = 15
+    padding = 12
+    horizontal_padding = 12
+    text_icon_padding = 8
+    separator_height = 2
+
+    # Estilo visual (macOS style)
+    frame_width = 1
+    frame_color = "#00000030"
+    separator_color = frame
+    corner_radius = 12
+    corners = all
+
+    # Fuente
+    font = SF Pro Display 11
+
+    # Texto
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    # Iconos
+    enable_recursive_icon_lookup = true
+    icon_theme = "Adwaita, hicolor"
+    icon_position = left
+    min_icon_size = 24
+    max_icon_size = 48
+    icon_corners = all
+    icon_corner_radius = 8
+
+    # Barra de progreso
+    progress_bar = true
+    progress_bar_height = 8
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 4
+    progress_bar_corners = all
+
+    # Historial y navegación
+    sticky_history = yes
+    history_length = 20
+    indicate_hidden = yes
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
+    browser = /usr/bin/xdg-open
+
+    # Comportamiento
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    timeout = 5
+    background = "#1e1e1e90"
+    foreground = "#ffffff"
+    force_xinerama = false
+
+# Prioridades
+
+[urgency_low]
+    background = "#2c2c2c95"
+    foreground = "#ffffff"
+    frame_color = "#4a4a4a40"
+    timeout = 4
+    icon = ""
+
+[urgency_normal]
+    background = "#2c2c2c95"
+    foreground = "#ffffff"
+    frame_color = "#0066cc40"
+    timeout = 6
+    icon = ""
+
+[urgency_critical]
+    background = "#ff334495"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+    icon = ""
+
+# Apps específicas
+
+[Discord]
+    appname = "Discord"
+    background = "#7289da95"
+    foreground = "#ffffff"
+    frame_color = "#7289da60"
+    timeout = 8
+
+[Spotify]
+    appname = "Spotify"
+    background = "#1ed76095"
+    foreground = "#ffffff"
+    frame_color = "#1ed76060"
+    timeout = 6
+    format = "<b>♪ %s</b>\n%b"
+
+[Telegram]
+    appname = "TelegramDesktop"
+    background = "#0088cc95"
+    foreground = "#ffffff"
+    frame_color = "#0088cc60"
+    timeout = 7
+
+[System]
+    appname = "System"
+    background = "#34495e95"
+    foreground = "#ffffff"
+    frame_color = "#34495e60"
+    timeout = 8
+
+[Firefox]
+    appname = "Firefox"
+    background = "#ff7f0095"
+    foreground = "#ffffff"
+    frame_color = "#ff7f0060"
+    timeout = 6
+
+[battery_low]
+    appname = "Battery Warning"
+    background = "#e74c3c95"
+    foreground = "#ffffff"
+    frame_color = "#e74c3c"
+    timeout = 0
+    format = "<b>⚠ %s</b>\n%b"
+
+[network]
+    appname = "NetworkManager"
+    background = "#3498db95"
+    foreground = "#ffffff"
+    frame_color = "#3498db60"
+    timeout = 5
+    format = "<b>🌐 %s</b>\n%b"
+
+[screenshot]
+    appname = "scrot"
+    background = "#9b59b695"
+    foreground = "#ffffff"
+    frame_color = "#9b59b660"
+    timeout = 3
+    format = "<b>📸 %s</b>\n%b"
+

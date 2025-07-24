@@ -1,0 +1,7 @@
+[Unit]
+Description=Autoajusta pantallas y workspaces al conectar monitor externo
+
+[Service]
+Type=oneshot
+ExecStart=/home/nicolas/.config/i3/scripts/monitors.sh
+

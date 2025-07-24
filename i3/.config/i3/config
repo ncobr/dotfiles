@@ -1,0 +1,199 @@
+# Configuración básica
+font pango: SF Compact Display 10
+workspace_layout default
+default_border pixel 1
+default_floating_border pixel 4
+smart_gaps off
+smart_borders on
+gaps inner 3
+gaps outer 3
+
+# Teclas modificadoras
+set $mod Mod4
+floating_modifier $mod
+
+# Definición de espacios de trabajo
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Definici\u00f3n de colores
+set $mediumgrey #888888
+set $darkblue #000088
+set $grey #aaaaaa
+set $darkgrey #444444
+set $black #000000
+set $urgentred #ff0000
+set $white #ffffff
+set $yellowbrown #bbaa55
+set $lightblue #3399ff
+
+
+
+# Navegación entre espacios de trabajo
+bindcode $mod+10 workspace $ws1
+bindcode $mod+11 workspace $ws2
+bindcode $mod+12 workspace $ws3
+bindcode $mod+13 workspace $ws4
+bindcode $mod+14 workspace $ws5
+
+workspace 1 output HDMI1
+workspace 2 output HDMI1
+workspace 3 output HDMI1
+workspace 4 output eDP1
+workspace 5 output eDP1
+
+bindcode $mod+Shift+10 move container to workspace $ws1
+bindcode $mod+Shift+11 move container to workspace $ws2
+bindcode $mod+Shift+12 move container to workspace $ws3
+bindcode $mod+Shift+13 move container to workspace $ws4
+bindcode $mod+Shift+14 move container to workspace $ws5
+
+
+# Redimensionar ventanas
+
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Atajos para manejar ventanas flotantes y maximizar
+bindsym $mod+f fullscreen toggle
+bindsym $mod+m mark maximized, floating enable, resize set 1000 800
+bindsym $mod+Shift+m unmark maximized, floating disable
+bindsym $mod+Shift+q move scratchpad
+bindsym $mod+Shift+s scratchpad show
+
+# Acciones rápidas
+bindsym $mod+d exec --no-startup-id rofi -show drun
+# bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+n exec /usr/bin/thunar
+bindsym $mod+q kill
+bindsym Print exec xfce4-screenshooter && exit
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu.sh
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+F1 exec --no-startup-id xed ~/.config/i3/keybindings
+bindsym $mod+Tab [con_id=__focused__] focus
+
+# Foco de ventanas
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+b focus up
+bindsym $mod+o focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Mover ventanas
+bindsym $mod+Shift+left move left
+bindsym $mod+Shift+down move down
+bindsym $mod+Shift+up move up
+bindsym $mod+Shift+right move right
+
+
+# Diseño y visibilidad
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+s layout stacking
+bindsym $mod+g layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# Multimedia
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume.sh up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume.sh down
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume.sh mute
+bindsym XF86AudioMicMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86MonBrightnessUp exec brightnessctl set +5% && dunstify -r 9993 -t 1500 "Brightness: $(brightnessctl get)%"
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- && dunstify -r 9993 -t 1500 "Brightness: $(brightnessctl get)%"
+bindsym XF86PowerOff exec --no-startup-id ~/.config/i3/scripts/powermenu.sh
+# Aplicaciones
+bindsym $mod+w exec --no-startup-id firefox
+#bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
+#bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/empty_workspace
+
+# Reglas flotantes
+
+# Autostart
+# exec --no-startup-id feh --bg-scale ~/Imágenes/wallpapers/45438_art.jpg &
+# exec --no-startup-id ~/.screenlayout/top-bottom.sh
+# exec --no-startup-id nitrogen --restore &
+exec --no-startup-id i3-msg "workspace 4; move workspace to output eDP1"
+exec --no-startup-id i3-msg "workspace 1; move workspace to output HDMI1"
+
+#exec --no-startup-id ~/.config/i3/scripts/battery_alert.sh &
+#exec --no-startup-id picom --animations --config ~/.config/picom/picom.conf &
+exec --no-startup-id blueman-applet &
+exec --no-startup-id udiskie -t -A &
+exec --no-startup-id xset r rate 300 50 &
+exec --no-startup-id tlp start -s &
+exec --no-startup-id nitrogen --restore &
+# exec --no-startup-id xss-lock -- betterlockscreen -l &  # Bloqueo automático con betterlockscreen
+exec --no-startup-id unclutter --timeout 3 &  # Esconde el cursor si no se usa
+exec --no-startup-id xsetroot -cursor_name left_ptr
+exec --no-startup-id xset s 480 dpms 600 600 600
+exec --no-startup-id /usr/bin/dunst &
+exec --no-startup-id redshift -l 4.8133:-75.6961 -t 4800:4000 -g 0.8 -m randr &
+exec --no-startup-id nm-applet &
+exec --no-startup-id dunst &
+exec --no-startup-id xfce4-panel &
+# exec --no-startup-id polybar &
+exec --no-startup-id dex --autostart --environment i3
+
+
+# Configuración de colores
+client.focused $lightblue $darkblue $white $mediumgrey $mediumgrey
+client.unfocused $darkblue $darkblue $grey $darkgrey $darkgrey
+client.focused_inactive $darkblue $darkblue $grey $black $black
+client.urgent $urgentred $urgentred $white $yellowbrown $yellowbrown
+
+for_window [window_role="pop-up"] floating enable, no_focus
+for_window [class="Matplotlib"] floating enable
+for_window [class="matplotlib"] floating enable
+for_window [class="Yad"] floating enable
+for_window [class="kitty"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Bluetooth-sendto"] floating enable
+for_window [class="Thunar"] floating enable, move to position 800 500
+for_window [class="Matplotlib"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="Xfce4-settings-manager"] floating enable
+for_window [class="Xfce4-power-manager-settings"] floating enable
+for_window [class="Xfce4-screensaver-preferences"] floating enable
+for_window [class="Xfce4-display-settings"] floating enable
+for_window [class="Xfce4-appearance-settings"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable, resize set 700 400
+
+
+# bar {
+#     status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+#     font pango:JetBrainsMono Nerd Font 10
+#     position top
+#     tray_output primary
+#
+# }
+

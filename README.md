@@ -23,6 +23,10 @@ chmod +x install.sh
 
 - - -
 
+## Uso
+para que i3 surta efecto se debe reiniciar el sistema despues de la instalacion y con el
+session manager loggearse desde xinitrc, o si se prefiere desde *tty1* ejecutar `startx`
+
 ## Estructura de dotfiles
 
 Cada carpeta en este repo (btop, kitty, zsh, etc.) es un "stow package".

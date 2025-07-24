@@ -114,6 +114,7 @@ BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$BACKUP_DIR"
 
 # Detectar qué carpetas están en el repositorio (son los paquetes a stowear)
+echo -e "\n${GREEN}=>${RESET} Enlazando dotfiles con stow...\n"
 stow_packages=()
 for dir in */; do
     stow_packages+=("${dir%/}")
@@ -136,12 +137,9 @@ for pkg in "${stow_packages[@]}"; do
         mv "$target_path" "$BACKUP_DIR/$(dirname "$target_path" | sed "s|$HOME/||")"
     fi
 done
-
-
-echo -e "\n${GREEN}=>${RESET} Enlazando dotfiles con stow...\n"
-for dir in */; do
-    stow -v --target="$HOME" "$dir"
-done
-
 echo -e "\N${GREEN}=> SUCCES:${RESET} Dotfiles installed\n"
+
+
+
+
 

@@ -98,9 +98,9 @@ else
 fi
 
 
-echo -e "\n${GREEN}=>${RESET} Clonning dotfiles repository...\n"
+echo -e "\n${GREEN}=>${RESET} Clonning dotfiles repository..."
 if [ -d "$HOME/dotfiles" ]; then
-    echo -e "${YELLOW} ->${RESET} repository already cloned"
+    echo -e "${YELLOW} ->${RESET} repository already cloned\n"
 else
     echo -e "${BLUE} ->${RESET} creating dotfiles dirname...\n"
   git clone https://github.com/ncobr/dotfiles.git "$HOME/dotfiles"
@@ -136,3 +136,12 @@ for pkg in "${stow_packages[@]}"; do
         mv "$target_path" "$BACKUP_DIR/$(dirname "$target_path" | sed "s|$HOME/||")"
     fi
 done
+
+
+echo -e "\n${GREEN}=>${RESET} Enlazando dotfiles con stow...\n"
+for dir in */; do
+    stow -v --target="$HOME" "$dir"
+done
+
+echo -e "\N${GREEN}=> SUCCES:${RESET} Dotfiles installed\n"
+

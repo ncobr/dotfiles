@@ -148,5 +148,15 @@ for dir in */; do
 done
 
 
+
+if [[ "${1-}" == "--self-delete" ]]; then
+    echo -e "\n${BLUE} ->${RESET}Cleaning temo files..."
+    rm -f "$HOME/install.sh" "$HOME/packages.txt" "$HOME/aur-packages.txt"
+    echo -e "   temp files eliminated\n"
+fi
+
+
+
+
 echo -e "\n${GREEN}=> SUCCES:${RESET} Dotfiles installed\n"
 

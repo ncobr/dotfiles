@@ -1,14 +1,12 @@
-# ~/.config/dunst/dunstrc
-
 [global]
     monitor = 0
     follow = mouse
 
     # POSICIÓN: abajo centrado
     origin = bottom-center
-    offset = (0, 80)        # X=centrado, Y=80 píxeles desde abajo
-    width = (0, 450)        # ancho dinámico, máx 450px
-    height = (0, 300)       # alto dinámico, máx 300px
+    offset = (0, 80)
+    width = (0, 450)
+    height = (0, 300)
 
     # Transparencia y estilo
     transparency = 15
@@ -19,7 +17,7 @@
 
     # Estilo visual (macOS style)
     frame_width = 1
-    frame_color = "#00000030"
+    frame_color = "#67623C30"  # color1 con transparencia
     separator_color = frame
     corner_radius = 12
     corners = all
@@ -43,7 +41,7 @@
 
     # Iconos
     enable_recursive_icon_lookup = true
-    icon_theme = "Adwaita, hicolor"
+    icon_theme = "Adwaita, hicolor, MacTahoe-dark, Kora"
     icon_position = left
     min_icon_size = 24
     max_icon_size = 48
@@ -71,92 +69,28 @@
     title = Dunst
     class = Dunst
     timeout = 5
-    background = "#1e1e1e90"
-    foreground = "#ffffff"
+    background = "#14100c90"      # color0 con opacidad
+    foreground = "#bbbca7"        # foreground de pywal
     force_xinerama = false
 
-# Prioridades
-
 [urgency_low]
-    background = "#2c2c2c95"
-    foreground = "#ffffff"
-    frame_color = "#4a4a4a40"
+    background = "#14100c95"      # color0 con opacidad
+    foreground = "#bbbca7"
+    frame_color = "#67623C40"     # color1 translúcido
     timeout = 4
     icon = ""
 
 [urgency_normal]
-    background = "#2c2c2c95"
-    foreground = "#ffffff"
-    frame_color = "#0066cc40"
+    background = "#14100c95"
+    foreground = "#bbbca7"
+    frame_color = "#716F4A40"     # color3 translúcido
     timeout = 6
     icon = ""
 
 [urgency_critical]
-    background = "#ff334495"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "#67623C95"      # color1 con opacidad
+    foreground = "#14100c"        # texto negro fuerte
+    frame_color = "#A9863640"     # color6 translúcido
     timeout = 0
     icon = ""
-
-# Apps específicas
-
-[Discord]
-    appname = "Discord"
-    background = "#7289da95"
-    foreground = "#ffffff"
-    frame_color = "#7289da60"
-    timeout = 8
-
-[Spotify]
-    appname = "Spotify"
-    background = "#1ed76095"
-    foreground = "#ffffff"
-    frame_color = "#1ed76060"
-    timeout = 6
-    format = "<b>♪ %s</b>\n%b"
-
-[Telegram]
-    appname = "TelegramDesktop"
-    background = "#0088cc95"
-    foreground = "#ffffff"
-    frame_color = "#0088cc60"
-    timeout = 7
-
-[System]
-    appname = "System"
-    background = "#34495e95"
-    foreground = "#ffffff"
-    frame_color = "#34495e60"
-    timeout = 8
-
-[Firefox]
-    appname = "Firefox"
-    background = "#ff7f0095"
-    foreground = "#ffffff"
-    frame_color = "#ff7f0060"
-    timeout = 6
-
-[battery_low]
-    appname = "Battery Warning"
-    background = "#e74c3c95"
-    foreground = "#ffffff"
-    frame_color = "#e74c3c"
-    timeout = 0
-    format = "<b>⚠ %s</b>\n%b"
-
-[network]
-    appname = "NetworkManager"
-    background = "#3498db95"
-    foreground = "#ffffff"
-    frame_color = "#3498db60"
-    timeout = 5
-    format = "<b>🌐 %s</b>\n%b"
-
-[screenshot]
-    appname = "scrot"
-    background = "#9b59b695"
-    foreground = "#ffffff"
-    frame_color = "#9b59b660"
-    timeout = 3
-    format = "<b>📸 %s</b>\n%b"
 

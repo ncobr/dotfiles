@@ -1,6 +1,14 @@
 /** Basic config file **/
 
+@import "~/.cache/wal/colors-rofi-dark"
+
+element-text {
+ background-color: inherit;
+ text-color: inherit;
+}
+
+
 configuration {
   show-icons:         true;
-  icon-theme:         "Papirus";
+  icon-theme:         "WhiteSur";
 }

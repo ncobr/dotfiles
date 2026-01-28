@@ -71,18 +71,42 @@ end
 
 -- Linting
 keymap("n", "<leader>l", function()
-  require("lint").try_lint()
-  vim.notify("Linting completed for current file!", vim.log.levels.INFO)
+    require("lint").try_lint()
+    vim.notify("Linting completed for current file!", vim.log.levels.INFO)
 end, { desc = "Trigger linting for current file" })
 
 keymap("n", "<leader>la", function()
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    require("lint").try_lint(bufnr)
-  end
-  vim.notify("Linting completed for all open buffers!", vim.log.levels.INFO)
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        require("lint").try_lint(bufnr)
+    end
+    vim.notify("Linting completed for all open buffers!", vim.log.levels.INFO)
 end, { desc = "Trigger linting for all open files" })
 
 -- Writing
 keymap("n", "<leader>zp", ":MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
 keymap("n", "<leader>zg", ":Glow<CR>", { desc = "Toggle Glow Preview" })
 keymap("n", "<leader>zz", ":ZenMode<CR>", { desc = "Toggle Zen Mode" })
+
+-- Obsidian:
+-- Obsidian and Dashboard Keymaps
+keymap("n", "<leader>od", function()
+    vim.fn.jobstart({ "python3", "/home/nicolas/202502/generate_dashboard.py" }, {
+        on_exit = function()
+            -- Find the Dashboard buffer and reload it
+            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                if vim.api.nvim_buf_get_name(buf):match("Dashboard.md") then
+                    vim.api.nvim_buf_call(buf, function()
+                        vim.cmd("e!")
+                    end)
+                    break
+                end
+            end
+            vim.notify("Dashboard refreshed!", vim.log.levels.INFO)
+        end
+    })
+end, { desc = "Refresh Course Dashboard" })
+
+keymap("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open Obsidian Note" })
+keymap("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Search Obsidian Notes" })
+keymap("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert Obsidian Template" })
+

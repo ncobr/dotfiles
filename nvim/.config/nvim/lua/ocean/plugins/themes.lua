@@ -14,11 +14,17 @@ return {
             { "zenbones-theme/zenbones.nvim", dependencies = "rktjmp/lush.nvim", name = "zenbones" },
             { "projekt0n/github-nvim-theme",  name = "github-nvim-theme" },
             { "wtfox/jellybeans.nvim",        name = "jellybeans" },
+            { "AlphaTechnolog/pywal.nvim",    name = "pywal"},
         },
         config = function()
             require("themery").setup({
                 themes = {
                     -- Listado con hooks para setup correcto
+                    {
+                        name = "pywal",
+                        colorscheme = "pywal",
+
+                    },
                     {
                         name = "Catppuccin",
                         colorscheme = "catppuccin",

@@ -80,7 +80,7 @@ bindsym $mod+Shift+s scratchpad show
 
 # Acciones rápidas
 bindsym $mod+d exec --no-startup-id rofi -show drun
-# bindsym $mod+Tab workspace nex
+# bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Return exec --no-startup-id kitty
 bindsym $mod+n exec /usr/bin/thunar
@@ -131,7 +131,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5% && dunstify -r 9993 -t 15
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- && dunstify -r 9993 -t 1500 "Brightness: $(brightnessctl get)%"
 bindsym XF86PowerOff exec --no-startup-id ~/.config/i3/scripts/powermenu.sh
 # Aplicaciones
-bindsym $mod+w exec --no-startup-id brave
+bindsym $mod+w exec --no-startup-id firefox
 #bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 #bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/empty_workspace
 
@@ -140,35 +140,35 @@ bindsym $mod+w exec --no-startup-id brave
 # Autostart
 # exec --no-startup-id feh --bg-scale ~/Imágenes/wallpapers/45438_art.jpg &
 # exec --no-startup-id ~/.screenlayout/top-bottom.sh
-exec --no-startup-id nitrogen --restore &
-# exec --no-startup-id i3-msg "workspace 4; move workspace to output eDP1"
-# exec --no-startup-id i3-msg "workspace 1; move workspace to output HDMI1"
-exec --no-startup-id /usr/lib/xfce4/xfconf/xfconfd &
-exec --no-startup-id /usr/bin/xfsettingsd &
-exec --no-startup-id xfce4-power-manager &
-exec --no-startup-id Xfce4-power-manager-settings &
-# exec --no-startup-id ~/.config/i3/scripts/battery_alert.sh &
-# exec --no-startup-id picom --animations --config ~/.config/picom/picom.conf &
+# exec --no-startup-id nitrogen --restore &
+#exec --no-startup-id i3-msg "workspace 4; move workspace to output eDP1"
+#exec --no-startup-id i3-msg "workspace 1; move workspace to output HDMI1"
+#exec --no-startup-id /usr/lib/xfce4/xfconf/xfconfd &
+#exec --no-startup-id /usr/bin/xfsettingsd &
+#exec --no-startup-id xfce4-power-manager &
+#exec --no-startup-id Xfce4-power-manager-settings &
+#exec --no-startup-id ~/.config/i3/scripts/battery_alert.sh &
+#exec --no-startup-id picom --animations --config ~/.config/picom/picom.conf &
 exec --no-startup-id setxkbmap -layout latam &
 
 exec --no-startup-id blueman-applet &
-exec --no-startup-id udiskie -t -A &
-# exec --no-startup-id xset r rate 300 50 &
-# exec --no-startup-id tlp start -s &
-# exec --no-startup-id nitrogen --restore &
+#exec --no-startup-id udiskie -t -A &
+#exec --no-startup-id xset r rate 300 50 &
+#exec --no-startup-id tlp start -s &
+exec --no-startup-id nitrogen --restore &
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l &
 # exec --no-startup-id xss-lock -- betterlockscreen -l &  # Bloqueo automático con betterlockscreen
-exec --no-startup-id unclutter --timeout 3 &  # Esconde el cursor si no se usa
+#exec --no-startup-id unclutter --timeout 3 &  # Esconde el cursor si no se usa
 exec --no-startup-id xsetroot -cursor_name left_ptr
 # exec --no-startup-id xset s 480 dpms 600 600 600
 exec --no-startup-id /usr/bin/dunst &
 exec --no-startup-id redshift -l 4.8133:-75.6961 -t 4800:4000 -g 0.8 -m randr &
 exec --no-startup-id nm-applet &
 exec --no-startup-id ~/.config/i3/scripts/launch_pywal_dunst.sh
-exec --no-startup-id xfce4-panel &
+#exec --no-startup-id xfce4-panel &
 exec --no-startup-id wal -R &
 # exec --no-startup-id polybar &
-exec --no-startup-id dex --autostart --environment i3
+#exec --no-startup-id dex --autostart --environment i3
 
 
 # Configuración de colores
@@ -203,4 +203,5 @@ for_window [class="Xfce4-appfinder"] floating enable, resize set 700 400
 #     tray_output primary
 #
 # }
+
 

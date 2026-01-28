@@ -1,36 +1,59 @@
 return {
-  "epwalsh/obsidian.nvim",
-  version = "*",  -- recommended, use latest release instead of latest commit
-  lazy = true,
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
     ft = "markdown",
-  dependencies = {
-    -- Required.
-    "nvim-lua/plenary.nvim",
-
-    -- see below for full list of optional dependencies 👇
-  },
-  opts = {
-    workspaces = {
-      {
-        name = "Main",
-        path = "~/ObsidianVault/",
-      },
-
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "hrsh7th/nvim-cmp",
+        "nvim-telescope/telescope.nvim",
     },
-    daily_notes = {
-        -- Optional, if you keep daily notes in a separate directory.
-        folder = "daily/",
-        -- Optional, if you want to change the date format for the ID of daily notes.
-        date_format = "%Y-%m-%d",
-        -- Optional, if you want to change the date format of the default alias of daily notes.
-        alias_format = "%B %-d, %Y",
-        -- Optional, default tags to add to each new daily note created.
-        default_tags = { "daily-notes" },
-        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-        template = "/home/nicolas/ObsidianVault/Templates/DailyTemplate.md",
-  },
+    opts = {
+        workspaces = {
+            {
+                name = "202502-Courses",
+                path = "/home/nicolas/202502/",
+            },
+        },
 
+        -- Optional, for templates (see below)
+        templates = {
+            folder = "templates",
+            date_format = "%Y-%m-%d",
+            time_format = "%H:%M",
+        },
 
-    -- see below for full list of options 👇
-  },
+        -- How to interpret links
+        follow_url_func = function(url)
+            -- Open PDFs with Zathura, otherwise use the default browser
+            if url:match "%.pdf$" then
+                vim.fn.jobstart({ "zathura", url }, { detach = true })
+            else
+                vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+            end
+        end,
+
+        -- For finding notes
+        note_id_func = function(title)
+            -- Create note IDs in a way that is compatible with your existing files
+            return title
+        end,
+
+        -- Completion support
+        completion = {
+            nvim_cmp = true,
+            min_chars = 2,
+        },
+
+        -- Optional, configure keymappings
+        mappings = {
+            -- Overrides the 'gf' mapping to work on markdown/wiki links.
+            ["gf"] = {
+                action = function()
+                    return require("obsidian").util.gf_passthrough()
+                end,
+                opts = { noremap = false, expr = true, buffer = true },
+            },
+        },
+    },
 }

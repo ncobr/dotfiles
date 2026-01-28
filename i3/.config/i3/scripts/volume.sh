@@ -4,19 +4,19 @@
 NOTIF_ID=9991
 
 # Rutas a íconos (usa tus propios si quieres)
-ICON_MUTED="/usr/share/icons/Adwaita/symbolic/status/audio-volume-muted-symbolic.svg"
-ICON_LOW="/usr/share/icons/Adwaita/symbolic/status/audio-volume-low-symbolic.svg"
-ICON_MEDIUM="/usr/share/icons/Adwaita/symbolic/status/audio-volume-medium-symbolic.svg"
-ICON_HIGH="/usr/share/icons/Adwaita/symbolic/status/audio-volume-high-symbolic.svg"
+ICON_MUTED="$HOME/.local/share/icons/WhiteSur-grey-dark/actions/24/audio-volume-muted.svg"
+ICON_LOW="$HOME/.local/share/icons/WhiteSur-grey-dark/actions/24/audio-volume-low.svg"
+ICON_MEDIUM="$HOME/.local/share/icons/WhiteSur-grey-dark/actions/24/audio-volume-medium.svg"
+ICON_HIGH="$HOME/.local/share/icons/WhiteSur-grey-dark/actions/24/audio-volume-high.svg"
 
 
 # Acción según argumento
 case "$1" in
   up)
-    pamixer -i 5
+    pamixer -i 1
     ;;
   down)
-    pamixer -d 5
+    pamixer -d 1
     ;;
   mute)
     pamixer -t
@@ -47,4 +47,4 @@ else
 fi
 
 # Mostrar notificación
-dusntify -r "$NOTIF_ID" -i "$ICON" "$MSG"
+notify-send -r "$NOTIF_ID" -i "$ICON" "$MSG"

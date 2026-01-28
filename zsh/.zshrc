@@ -3,11 +3,22 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="${PATH}:REPLACE"
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+
+# Alternative (blocks terminal for 0-3ms)
+cat ~/.cache/wal/sequences
+
+# To add support for TTYs this line can be optionally added.
+source ~/.cache/wal/colors-tty.sh
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="bureau"
+ZSH_THEME="sunrise"
 setopt AUTO_CD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
@@ -127,11 +138,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias nv="nvim"
 alias l="ls -lah"
+alias grep='grep --color=auto'
 alias update='sudo pacman -Syu && yay -Syu'
 alias reflector-update="sudo reflector --verbose --sort rate -l 20 --save /etc/pacman.d/mirrorlist"
 alias stx="startx"
 alias ..='cd ..'
 alias ...='cd ../..'
+alias cdwm='nvim ~/dwm/config.h'
+alias mdwm='cd ~/dwm; sudo make clean install; cd -'
 export PATH=$HOME/.local/bin:$PATH
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#202020,bg:#151515,spinner:#ffafaf,hl:#ff8700 \
@@ -143,3 +157,5 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     fastfetch
 fi
 
+
+[ -f "/home/nicolas/.ghcup/env" ] && . "/home/nicolas/.ghcup/env" # ghcup-env

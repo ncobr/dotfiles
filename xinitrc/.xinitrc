@@ -2,7 +2,7 @@
 
 # Set keyboard layout
 
-#setxkbmap -layout latam &
+setxkbmap -layout latam &
 #wal -R &
 
 #nitrogen --restore &
@@ -14,7 +14,7 @@
 
 #blueman-applet &
 #udiskie -t -A &
-export XDG_CURRENT_DESKTOP=xmonad
+export XDG_CURRENT_DESKTOP=i3
 export XDG_SESSION_TYPE=x11
 /usr/lib/xdg-desktop-portal -r &
 /usr/lib/xdg-desktop-portal-gtk -r &
@@ -26,4 +26,4 @@ export XDG_SESSION_TYPE=x11
 
 # Start window manager
 #exec ~/bin/startdwm
-exec xmonad
+exec i3

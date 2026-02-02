@@ -1,3 +1,4 @@
+nitrogen
 apple-fonts
 betterlockscreen
 git-credential-oauth

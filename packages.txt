@@ -37,7 +37,6 @@ brightnessctl
 lxappearance
 xdotool
 unclutter
-nitrogen
 autorandr
 htop
 fzf
